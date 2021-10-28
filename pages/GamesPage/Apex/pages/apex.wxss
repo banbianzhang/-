@@ -1,0 +1,52 @@
+/* pages/GamesPage/Apex/apex.wxss */
+.legend-name{
+  color: white;
+  font-size: 40px;
+  font-family: 黑体;
+  margin-bottom: 10px;
+}
+
+.result-info{
+  color: white;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.comment{
+  color:#aaa;
+  font-size: 15px;
+}
+
+.weapon-panel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 20px;
+  position: relative;
+  width: 90%;
+}
+
+.weapon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  width: 100%;
+}
+
+.weapon-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  padding: 0 10px;
+  color:#ccc;
+}
+
+.weapon-img{
+  height:50px;
+  width: 50px;
+}

@@ -1,0 +1,7 @@
+<!--pages/components/footer.wxml-->
+<view class="footer" style="background: {{bg}};">
+    <view class="footer-button {{item.main?'button-main':''}}" wx:for="{{buttons}}" wx:for-item="item" wx:key="index" style="border: {{item.main?main_btn_border:''}}; background: {{item.main?main_btn_bg:''}};" bindtap="sendEvent" data-event="{{item.click}}">
+      <image src="{{item.url}}" class="{{item.main?'icon-main':'icon-small'}}"></image>
+      <text style="color: {{item.text_color}};">{{item.name}}</text>
+    </view>
+</view>

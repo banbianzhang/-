@@ -1,0 +1,25 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "backgroundColor": "#1C2838",
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "你群今天玩什么",
+        "navigationBarTextStyle": "white",
+        "disableScroll": "true"
+    },
+    "subPackages":[{
+        "root":"pages/GamesPage/Apex",
+        "name":"apex",
+        "pages":[
+            "pages/apex"
+        ],
+        "independent":false
+    }],
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<navigation-bar title="你群今天玩什么" has_bg="{{false}}"></navigation-bar>
+<view class="container">
+  <view class="gamelist-title-block">
+    <text>游戏列表</text>
+    <view class="divider"></view>
+  </view>
+  <scroll-view class="gamelist" scroll-y="true" style="height: {{scroll_height - 127 - 70}}px;">
+    <view class="game-block" wx:for="{{games}}" wx:for-item="item" wx:key="index" bindtap="bindGameTap" data-index="{{index}}">
+      <image src="{{item.image}}" mode="{{item.imageMode}}"></image>
+      <view>{{item.nameCn}}</view>
+    </view>
+  </scroll-view>
+</view>
+<footer buttons="{{buttons}}"></footer>

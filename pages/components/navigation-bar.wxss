@@ -1,0 +1,53 @@
+/* pages/components/navigation_bar.wxss */
+/* 顶部导航 */
+.status-bar {
+  width: 100%;
+  padding-bottom: 10px;
+  z-index: 50000;
+  position: fixed;
+  top: 0;
+  background: -webkit-linear-gradient(top, #1B2939, #1F2124);
+}
+
+.bg{
+  position: absolute;
+  width: 100%;
+  z-index: 49999;
+}
+
+.goBack {
+  position: absolute;
+  top: 15rpx;
+  font-size: 12pt;
+}
+
+.goBack image {
+  width: 21rpx;
+  height: 40rpx;
+  padding: 12rpx 20px 0 30rpx;
+}
+
+.tabar {
+  display: flex;
+  justify-content: center;
+}
+
+.tabar text,
+.place-holder {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 30rpx;
+  color: #cfd3dd;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.tabar .active {
+  color: #fff;
+}
+
+.place-holder {
+  position: relative;
+  width: 100%;
+  padding-bottom: 10px;
+}

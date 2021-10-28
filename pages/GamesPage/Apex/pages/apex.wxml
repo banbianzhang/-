@@ -1,0 +1,25 @@
+<!--pages/GamesPage/Apex/apex.wxml-->
+<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="/pages/GamesPage/Apex/pages/nav_bg.png"></navigation-bar>
+<view class="container" style="height: {{bg_height - 54 - 70}}px;">
+  <image src="/pages/GamesPage/Apex/pages/bg.jpg" class="bg" mode="aspectFill"></image>
+  <view class="result">
+    <text class="result-info">群友今天玩</text>
+    <text class="legend-name">{{result.legend.name}}</text>
+    <text class="comment">“{{result.legend.comment}}”</text>
+    <view class="weapon-panel">
+      <text class="result-info">玩 {{result.legend.name}} 当然要配</text>
+      <view class="weapon">
+        <view class="weapon-block">
+          <image class="weapon-img" src="{{result.weapon1.img}}"></image>
+          <view>{{result.weapon1.name}}</view>
+        </view>
+        <view class="weapon-block">
+          <image class="weapon-img" src="{{result.weapon2.img}}"></image>
+          <view>{{result.weapon2.name}}</view>
+        </view>
+      </view>
+      <text class="weapon-comment"></text>
+    </view>
+  </view>
+</view>
+<footer bg="#D64033" buttons="{{buttons}}" main_btn_border="2px white solid" main_btn_bg="-webkit-linear-gradient(top, #343B4D, #7B2D29)" bind:getResult="getResult"></footer>

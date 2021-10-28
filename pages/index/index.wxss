@@ -1,0 +1,42 @@
+/**index.wxss**/
+page {
+ background-color: #1C2838;
+}
+
+.container{
+  padding: 20rpx 0;
+}
+
+.gamelist-title-block{
+  padding: 0 5%;
+  width: 90%;
+  height: 43px;
+  text-align: left;
+  color: #ccc;
+}
+
+.divider{
+  border-bottom: 2px #383C45 solid;
+  margin: 20rpx 0;
+}
+
+.gamelist{
+  margin-bottom: 10px;
+}
+
+.game-block{
+  position: relative;
+  width: 90%;
+  margin: 5px 5% 15px 5%;
+  text-align: center;
+  color:#ccc;
+}
+
+.game-block image{
+  position: relative;
+  width: 100%;
+  max-width: 428px;
+  height: 140px;
+  border-radius: 5px;
+}
+
