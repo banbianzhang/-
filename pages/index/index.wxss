@@ -40,3 +40,20 @@ page {
   border-radius: 5px;
 }
 
+.setting{
+  border-top: 6px solid #222830;
+  background: #2D3136;
+  color:#ccc;
+}
+
+.setting-block-title{
+  border-bottom: 2px solid #aaa;
+  color: #ccc;
+}
+
+.option-comment{
+  color: #aaa;
+  font-size: 14px;
+  margin-left: 0;
+}
+

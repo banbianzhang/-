@@ -1,25 +1,69 @@
 <!--pages/GamesPage/Apex/apex.wxml-->
-<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="/pages/GamesPage/Apex/pages/nav_bg.png"></navigation-bar>
-<view class="container" style="height: {{bg_height - 54 - 70}}px;">
+<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/nav_bg.png"></navigation-bar>
+<view class="container" style="height: {{bg_height - 54}}px;">
   <image src="/pages/GamesPage/Apex/pages/bg.jpg" class="bg" mode="aspectFill"></image>
-  <view class="result">
-    <text class="result-info">群友今天玩</text>
-    <text class="legend-name">{{result.legend.name}}</text>
-    <text class="comment">“{{result.legend.comment}}”</text>
-    <view class="weapon-panel">
-      <text class="result-info">玩 {{result.legend.name}} 当然要配</text>
-      <view class="weapon">
-        <view class="weapon-block">
-          <image class="weapon-img" src="{{result.weapon1.img}}"></image>
-          <view>{{result.weapon1.name}}</view>
-        </view>
-        <view class="weapon-block">
-          <image class="weapon-img" src="{{result.weapon2.img}}"></image>
-          <view>{{result.weapon2.name}}</view>
+  <view class="mask" style="height: {{legend_image_height}}px;"></view>
+  <image class="legend-image" src="cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/legends/{{result.legend.name}}.png" mode="aspectFill" style="height: {{legend_image_height}}px;"></image>
+  <view class="setting-mask" style="display: {{(legendSettingEnable||settingEnable)?'block':'none'}};" bindtap="disableSettings"></view>
+  <view class="setting" style="display: {{(legendSettingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
+    <view class="setting-title">可用的传奇</view>
+    <view class="setting-help">选择一键白给中出现的传奇</view>
+    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight - 40}}px;">
+      <view class="legend-list">
+        <view class="legend-block" wx:for="{{legends}}" wx:key="index" wx:for-item="item" bindtap="selectLegend" data-index="{{index}}" style="border: {{selectedLegends[index]?'':'2px #777 solid'}};">
+          <view class="image-mask" style="display: {{selectedLegends[index]?'none':'block'}};"></view>
+          <image class="legend-profile" src="/pages/GamesPage/Apex/pages/legends-face/{{index+1}}.png"></image>
+          <view class="legend-block-name" style="background: {{selectedLegends[index]?'':'#777'}};">{{item.name}}</view>
         </view>
       </view>
-      <text class="weapon-comment"></text>
+    </scroll-view>
+  </view>
+  <view class="setting" style="display: {{(settingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
+    <view class="setting-title">随机设置</view>
+    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight - 40}}px;">
+      <view class="setting-block">
+        <view class="setting-block-title">武器设置</view>
+        <checkbox-group bindchange="weaponSettingChange">
+          <view class="option" wx:for="{{settings}}" wx:key="index" wx:for-item="optionItem">
+            <checkbox class="setting-checkbox" value="{{optionItem.value}}" checked="{{optionItem.checked}}" style="pointer-events: {{optionItem.disabled?'none':'default'}}; opacity: {{optionItem.disabled?'0.3':'1'}};">{{optionItem.name}}</checkbox>
+            <view class="option-comment">{{optionItem.comment}}</view>
+          </view>
+        </checkbox-group>
+      </view>
+      <view class="setting-block">
+        <view class="setting-block-title">缓存设置</view>
+        <view class="option-button">
+          <text class="button option-button-son" bindtap="cleanCache">清理缓存</text>
+          <text class="option-comment option-button-son">点击后，将清理设置缓存</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='init-page' style="height: {{bg_height - 54- 115}}px; display: {{initialize?'none':'block'}}">
+    <view>点击</view>
+    <view style="font-size: 40px;">一键白给</view>
+    <view>开始选择你的捍卫者</view>
+  </view>
+  <view class="result" style="height: {{bg_height - 54- 115}}px; display: {{initialize?'flex':'none'}};">
+    <view class="result-block">
+      <text class="result-info">群友今天玩</text>
+      <text class="legend-name">{{result.legend.name}}</text>
+      <text class="comment">“{{result.legend.comment}}”</text>
+      <view class="weapon-panel" style="display: {{settings[0].checked&&(settings[1].checked||settings[2].checked||settings[3].checked)?'flex':'none'}};">
+        <text class="result-info">玩 {{result.legend.name}} 当然要配</text>
+        <view class="weapon">
+          <view class="weapon-block">
+            <image class="weapon-img" src="/pages/GamesPage/Apex/pages/weapons/{{result.weapon1.index}}.png" mode="aspectFit"></image>
+            <view>{{result.weapon1.name}}</view>
+          </view>
+          <view class="weapon-block">
+            <image class="weapon-img" src="/pages/GamesPage/Apex/pages/weapons/{{result.weapon2.index}}.png" mode="aspectFit"></image>
+            <view>{{result.weapon2.name}}</view>
+          </view>
+        </view>
+        <text class="weapon-comment"></text>
+      </view>
     </view>
   </view>
 </view>
-<footer bg="#D64033" buttons="{{buttons}}" main_btn_border="2px white solid" main_btn_bg="-webkit-linear-gradient(top, #343B4D, #7B2D29)" bind:getResult="getResult"></footer>
+<footer bg="-webkit-linear-gradient(top,#2B2B2B,#2D2D2B)" footer_border="4px white solid" buttons="{{buttons}}" main_btn_border="2px white solid" main_btn_bg="-webkit-linear-gradient(top, #343B4D, #7B2D29)" bind:getResult="getResult" bind:callLegendSetting="callLegendSetting" bind:callSetting="callSetting"></footer>

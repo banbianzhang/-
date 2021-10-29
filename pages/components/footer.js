@@ -10,7 +10,8 @@ Component({
       value:[]
     },
     main_btn_border:String,
-    main_btn_bg:String
+    main_btn_bg:String,
+    footer_border:String
   },
 
   /**

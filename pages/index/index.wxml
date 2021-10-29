@@ -1,6 +1,27 @@
 <!--index.wxml-->
 <navigation-bar title="你群今天玩什么" has_bg="{{false}}"></navigation-bar>
 <view class="container">
+  <view class="setting-mask" style="display: {{settingEnable?'block':'none'}};" bindtap="disableSettings"></view>
+  <view class="setting" style="display: {{(settingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
+    <view class="setting-title">全局设置</view>
+    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight - 40}}px;">
+      <view class="setting-block">
+        <view class="setting-block-title">应用设置</view>
+        <checkbox-group bindchange="settingChange">
+          <view class="option" wx:for="{{settings}}" wx:key="index" wx:for-item="optionItem">
+            <checkbox class="setting-checkbox" value="{{optionItem.value}}" checked="{{optionItem.checked}}" style="pointer-events: {{optionItem.disabled?'none':'default'}}; opacity: {{optionItem.disabled?'0.3':'1'}};">{{optionItem.name}}</checkbox>
+            <view class="option-comment">{{optionItem.comment}}</view>
+          </view>
+        </checkbox-group>
+      </view>
+      <view class="setting-block">
+        <view class="setting-block-title">关于</view>
+          <view class="option-comment">版本：{{version}}</view>
+          <view class="option-comment">作者：{{author}}</view>
+          <view class="option-comment">BUG反馈：直接在群里说</view>
+      </view>
+    </scroll-view>
+  </view>
   <view class="gamelist-title-block">
     <text>游戏列表</text>
     <view class="divider"></view>
@@ -12,4 +33,4 @@
     </view>
   </scroll-view>
 </view>
-<footer buttons="{{buttons}}"></footer>
+<footer buttons="{{buttons}}" bind:settingEnable="settingEnable"></footer>
