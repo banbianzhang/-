@@ -1,5 +1,6 @@
 <!--pages/components/navigation_bar.wxml-->
-<image class="bg" src="{{url}}" style="display: {{has_bg?'block':'none'}}; height: {{img_height}}px;" mode="aspectFill"></image>
+<image class="bg" src="{{url}}" style="display: {{has_bg?'block':'none'}}; height: {{img_height}}px;" mode="aspectFill" 
+bindload="loadDone"></image>
 <view class='status-bar' style="padding-top:{{bar_height}}px; background: {{has_bg?'rgba(0,0,0,0)':bg_color}};">
   <!--<view class='goBack' bindtap='goBack' style="padding-top:{{bar_Height}}px;"  hidden='{{show_bol}}'>
       <image src='/images/back.png'></image>

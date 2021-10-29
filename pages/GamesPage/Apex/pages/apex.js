@@ -435,6 +435,7 @@ Page({
             start: 6,
             end: 12
         },
+        loading:true,
         initialize: false,
         settingEnable: false,
         legendSettingEnable: false,
@@ -633,6 +634,10 @@ Page({
         })
     },
 
+    closeLoading:function(){
+        this.setData({'loading':false})
+    },
+
     cleanCache: function(){
         try{
             wx.removeStorageSync("apexSetting")
@@ -647,6 +652,7 @@ Page({
         }
         for(let i=0;i<this.data.settings.length;i++){
             modObj['settings[' + i + '].checked'] = this.data.settings[i].default;
+            modObj['settings[' + i + '].disabled'] = false;
         }
         this.setData(modObj)
         this.setData({

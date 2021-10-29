@@ -1,5 +1,9 @@
 <!--pages/GamesPage/Apex/apex.wxml-->
-<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/nav_bg.png"></navigation-bar>
+<view class="loading" wx:if="{{loading}}">
+  <image mode="aspectFill" class="loading-icon" src="/pages/Icons/Apex.png"></image>
+  <image mode="aspectFill" class="loading-bg" src="/pages/GamesPage/Apex/pages/bg.jpg"></image>
+</view>
+<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/nav_bg.png" bind:navigatorLoadDone="closeLoading"></navigation-bar>
 <view class="container" style="height: {{bg_height - 54}}px;">
   <image src="/pages/GamesPage/Apex/pages/bg.jpg" class="bg" mode="aspectFill"></image>
   <view class="mask" style="height: {{legend_image_height}}px;"></view>
