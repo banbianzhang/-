@@ -7,7 +7,7 @@
 <view class="container" style="height: {{bg_height - 54}}px;">
   <image src="/pages/GamesPage/Apex/pages/bg.jpg" class="bg" mode="aspectFill"></image>
   <view class="mask" style="height: {{legend_image_height}}px;"></view>
-  <image class="legend-image" src="cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/legends/{{result.legend.name}}.png" mode="aspectFill" style="height: {{legend_image_height}}px;"></image>
+  <image class="legend-image" src="{{initialize?'cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/legends/' + result.legend.name + '.png':''}}" mode="aspectFill" style="height: {{legend_image_height}}px; display: {{(initialize&&legendsSelectCnt)?'block':'none'}};"></image>
   <view class="setting-mask" style="display: {{(legendSettingEnable||settingEnable)?'block':'none'}};" bindtap="disableSettings"></view>
   <view class="setting" style="display: {{(legendSettingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
     <view class="setting-title">可用的传奇</view>
@@ -43,12 +43,18 @@
       </view>
     </scroll-view>
   </view>
-  <view class='init-page' style="height: {{bg_height - 54- 115}}px; display: {{initialize?'none':'block'}}">
+  <view class='init-page' style="height: {{bg_height - 54- 115}}px; display: {{initialize?'none':'block'}};">
     <view>点击</view>
     <view style="font-size: 40px;">一键白给</view>
     <view>开始选择你的捍卫者</view>
   </view>
-  <view class="result" style="height: {{bg_height - 54- 115}}px; display: {{initialize?'flex':'none'}};">
+  <view class='init-page' style="height: {{bg_height - 54- 115}}px; display: {{(initialize&&!legendsSelectCnt)?'block':'none'}};">
+    <view>点击我的传奇</view>
+    <view style="font-size: 40px;">选择你的捍卫者</view>
+    <view>不然怎么白给</view>
+    <image></image>
+  </view>
+  <view class="result" style="height: {{bg_height - 54- 115}}px; display: {{(initialize&&legendsSelectCnt)?'flex':'none'}};">
     <view class="result-block">
       <text class="result-info">群友今天玩</text>
       <text class="legend-name">{{result.legend.name}}</text>
@@ -57,11 +63,11 @@
         <text class="result-info">玩 {{result.legend.name}} 当然要配</text>
         <view class="weapon">
           <view class="weapon-block">
-            <image class="weapon-img" src="/pages/GamesPage/Apex/pages/weapons/{{result.weapon1.index}}.png" mode="aspectFit"></image>
+            <image class="weapon-img" src="{{initialize?'/pages/GamesPage/Apex/pages/weapons/'+result.weapon1.index+'.png':''}}" mode="aspectFit"></image>
             <view>{{result.weapon1.name}}</view>
           </view>
           <view class="weapon-block">
-            <image class="weapon-img" src="/pages/GamesPage/Apex/pages/weapons/{{result.weapon2.index}}.png" mode="aspectFit"></image>
+            <image class="weapon-img" src="{{initialize?'/pages/GamesPage/Apex/pages/weapons/'+result.weapon2.index+'.png':''}}" mode="aspectFit"></image>
             <view>{{result.weapon2.name}}</view>
           </view>
         </view>

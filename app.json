@@ -18,6 +18,13 @@
             "pages/apex"
         ],
         "independent":false
+    },{
+        "root":"pages/GamesPage/Forza5",
+        "name":"forza5",
+        "pages":[
+            "pages/forza5"
+        ],
+        "independent":false
     }],
     "style": "v2",
     "sitemapLocation": "sitemap.json",

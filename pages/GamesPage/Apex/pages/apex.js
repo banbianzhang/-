@@ -29,7 +29,7 @@ Page({
         ],
         legend_image_height: wx.getSystemInfoSync().screenWidth * 1.68,
         bg_height: wx.getSystemInfoSync().screenHeight - wx.getSystemInfoSync().screenWidth * 0.86 * 0.6,
-        settingMaxHeight : wx.getSystemInfoSync().screenHeight*0.6,
+        settingMaxHeight: wx.getSystemInfoSync().screenHeight * 0.6,
         legends: [{
             name: '寻血猎犬',
             comment: '众神之父赐予我重伤倒地'
@@ -101,7 +101,7 @@ Page({
             name: "轻型弹药武器",
             type: "ammo",
             single: false,
-            desc: "P2020、RE-45、R301、R99、G7",
+            desc: "P2020、RE-45、R301、R99、G7、CAR",
             airdrop: false,
             wtype: -2,
             ammo: 2,
@@ -297,7 +297,7 @@ Page({
             name: "G7侦察枪",
             type: "weapon",
             single: true,
-            airdrop: false,
+            airdrop: true,
             wtype: 6,
             ammo: 2,
             index: 25
@@ -321,7 +321,7 @@ Page({
             name: "三重式狙击枪",
             type: "weapon",
             single: true,
-            airdrop: true,
+            airdrop: false,
             wtype: 6,
             ammo: 0,
             index: 28
@@ -421,6 +421,14 @@ Page({
             wtype: 2,
             ammo: 16,
             index: 40
+        },{
+            name: "C·A·R",
+            type: "weapon",
+            single: false,
+            airdrop: false,
+            wtype: 6,
+            ammo: 4,
+            index: 41
         }],
         result: {
             legend: {},
@@ -435,8 +443,9 @@ Page({
             start: 6,
             end: 12
         },
-        loading:true,
+        loading: true,
         initialize: false,
+        legendsSelectCnt: true,
         settingEnable: false,
         legendSettingEnable: false,
         selectedLegends: [],
@@ -488,7 +497,7 @@ Page({
         }, {
             name: "允许相同弹药类型",
             comment: "允许出现两种武器弹药类型相同的情况",
-            father: [0, 2],
+            father: [0],
             value: "allowSameAmmo",
             index: 5,
             disabled: false,
@@ -497,7 +506,7 @@ Page({
         }, {
             name: "允许相同武器类型",
             comment: "允许出现两种武器的武器类型相同的情况",
-            father: [0, 3],
+            father: [0],
             value: "allowSameType",
             index: 6,
             disabled: false,
@@ -521,13 +530,33 @@ Page({
             disabled: false,
             checked: false,
             default: false
+        }, {
+            name: "允许弓箭",
+            comment: "终于可以不用玩弓箭啦！",
+            father: [0],
+            value: "allowBow",
+            index: 9,
+            disabled: false,
+            checked: false,
+            default: true
         }]
     },
 
     getResult: function () {
+        let legendsSelectCnt = false;
+        for (let i = 0; i < this.data.selectedLegends.length; i++) {
+            if (this.data.selectedLegends[i]) {
+                legendsSelectCnt = true;
+                break;
+            }
+        }
         this.setData({
-            "initialize": true
+            "initialize": true,
+            "legendsSelectCnt": legendsSelectCnt
         })
+        if (legendsSelectCnt == false) {
+            return;
+        }
         var rand = 0
         do {
             rand = Math.floor(Math.random() * this.data.legends.length)
@@ -535,7 +564,7 @@ Page({
         this.setData({
             "result.legend": this.data.legends[rand]
         })
-        if(!this.data.settings[0].checked)
+        if (!this.data.settings[0].checked)
             return
         var end = 0;
         var start = 0;
@@ -591,15 +620,17 @@ Page({
         do {
             wRand1 = Math.floor(start + Math.random() * (len - 1)) % this.data.weapons.length
             weapon1 = this.data.weapons[wRand1];
-        } while (this.data.settings[8].checked === false && weapon1.airdrop === true);
+        } while ((!this.data.settings[8].checked && weapon1.airdrop) ||
+                (!this.data.settings[9].checked && weapon1.ammo === 32))
         do {
             wRand2 = Math.floor(start + Math.random() * (len - 1)) % this.data.weapons.length
             weapon2 = this.data.weapons[wRand2];
         } while ((!this.data.settings[8].checked && weapon2.airdrop) ||
             ((!this.data.settings[4].checked && weapon1.name === weapon2.name && weapon1.type === "weapon") ||
-                (!this.data.settings[5].checked && weapon1.ammo === weapon2.ammo && weapon1.type==="ammo") ||
-                (!this.data.settings[6].checked && weapon1.wtype === weapon2.wtype　&& weapon1.type==="type") ||
-                (!this.data.settings[7].checked && weapon1.single && weapon2.single))
+                (!this.data.settings[5].checked && weapon1.ammo === weapon2.ammo && weapon1.type != "type") ||
+                (!this.data.settings[6].checked && weapon1.wtype === weapon2.wtype && weapon1.type != "ammo") ||
+                (!this.data.settings[7].checked && weapon1.single && weapon2.single) ||
+                (!this.data.settings[9].checked && weapon2.ammo === 32))
         );
         this.setData({
             "result.weapon1": this.data.weapons[wRand1],
@@ -634,23 +665,25 @@ Page({
         })
     },
 
-    closeLoading:function(){
-        this.setData({'loading':false})
+    closeLoading: function () {
+        this.setData({
+            'loading': false
+        })
     },
 
-    cleanCache: function(){
-        try{
+    cleanCache: function () {
+        try {
             wx.removeStorageSync("apexSetting")
             wx.removeStorageSync("selectedLegends")
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
         //重置默认值
-        var modObj=new Object()
-        for(let i=0;i<this.data.legends.length;i++){
+        var modObj = new Object()
+        for (let i = 0; i < this.data.legends.length; i++) {
             modObj["selectedLegends[" + i + "]"] = true;
         }
-        for(let i=0;i<this.data.settings.length;i++){
+        for (let i = 0; i < this.data.settings.length; i++) {
             modObj['settings[' + i + '].checked'] = this.data.settings[i].default;
             modObj['settings[' + i + '].disabled'] = false;
         }
@@ -671,7 +704,7 @@ Page({
     weaponSettingChange: function (e) {
         const settings = this.data.settings
         const values = e.detail.value
-        var modObj  = new Object()
+        var modObj = new Object()
         for (let i = 0; i < settings.length; i++) {
             modObj['settings[' + i + '].checked'] = false
             for (let j = 0; j < values.length; j++) {
@@ -683,8 +716,8 @@ Page({
             var flag = false;
             for (let j = 0; j < settings[i].father.length; j++) {
                 let fatherIndex = settings[i].father[j]
-                if (!modObj['settings['+fatherIndex+'].checked'] 
-                || modObj['settings['+fatherIndex+'].disabled']) {
+                if (!modObj['settings[' + fatherIndex + '].checked'] ||
+                    modObj['settings[' + fatherIndex + '].disabled']) {
                     flag = true;
                     break;
                 }

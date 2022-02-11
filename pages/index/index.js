@@ -22,12 +22,13 @@ Page({
         imageMode: "aspectFill",
         url: "/pages/GamesPage/Apex/pages/apex"
       },
-      {
+      /*{
         name: "Forza Horizon 5",
         nameCn: "极限竞速：地平线5",
         image: "images/fz5.jpg",
-        imageMode: "aspectFill"
-      }
+        imageMode: "aspectFill",
+        url: "/pages/GamesPage/Forza5/pages/forza5"
+      }*/
     ],
     buttons: [{
       url: '/pages/Icons/option-white.png',
@@ -117,8 +118,10 @@ Page({
         modObj["settings[" + i + "].checked"] = settingGet[i].checked
         modObj["settings[" + i + "].disabled"] = settingGet[i].disabled
       }
-      var lastPage = wx.getStorageSync('lastPage')
-      modObj["lastPage"] = lastPage
+      if(this.data.lastPage===-1){
+        var lastPage = wx.getStorageSync('lastPage')
+        modObj["lastPage"] = lastPage
+      }
       this.setData(modObj)
     } catch (e) {
       console.log(e)
@@ -126,8 +129,10 @@ Page({
   },
   onShow: function (e) {
     if (this.data.settings[0].checked && this.data.games[this.data.lastPage]!=undefined) {
+      const url = this.data.games[this.data.lastPage].url
+      this.setData({"lastPage":-2})
       wx.navigateTo({
-        url: this.data.games[this.data.lastPage].url
+        url: url
       })
     }
   }

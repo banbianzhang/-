@@ -1,0 +1,11 @@
+<!--pages/GamesPage/Forza5/pages/forza5.wxml-->
+<view class="loading" wx:if="{{loading}}">
+  <image mode="aspectFill" class="loading-icon" src="/pages/Icons/forza.png"></image>
+  <image mode="aspectFill" class="loading-bg" src="/pages/GamesPage/forza5/pages/bg.jpg"></image>
+</view>
+<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="black" has_bg="true" url="/pages/GamesPage/Forza5/pages/nav_bg.png" bind:navigatorLoadDone="closeLoading"></navigation-bar>
+<view class="container" style="height: {{bg_height - 54}}px;">
+  <image src="/pages/GamesPage/forza5/pages/bg.jpg" class="bg" mode="aspectFill"></image>
+  <view class="mask" style="height: {{legend_image_height}}px;"></view>
+</view>
+<footer bg="-webkit-linear-gradient(top,#2B2B2B,#2D2D2B)" footer_border="4px white solid" buttons="{{buttons}}" main_btn_border="2px white solid" main_btn_bg="-webkit-linear-gradient(top, #343B4D, #7B2D29)" bind:getResult="getResult" bind:callCarSetting="callCarSetting" bind:callSetting="callSetting"></footer>
