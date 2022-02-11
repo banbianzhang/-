@@ -87,6 +87,9 @@ Page({
         }, {
             name: '艾许',
             comment: '铁驭，你犯了大忌。啊（*死前尖叫*）'
+        }, {
+            name: '疯玛吉',
+            comment: '到女王这儿来'
         }],
         weapons: [{
             name: "重型弹药武器",
@@ -101,7 +104,7 @@ Page({
             name: "轻型弹药武器",
             type: "ammo",
             single: false,
-            desc: "P2020、RE-45、R301、R99、G7、CAR",
+            desc: "P2020、RE-45、R301、R99、G7、CAR、转换者",
             airdrop: false,
             wtype: -2,
             ammo: 2,
@@ -110,7 +113,7 @@ Page({
             name: "能量弹药武器",
             type: "ammo",
             single: false,
-            desc: "哈沃克、电能、专注、L-STAR",
+            desc: "哈沃克、专注、L-STAR、三重",
             airdrop: false,
             wtype: -3,
             ammo: 4,
@@ -281,7 +284,7 @@ Page({
             name: "电能冲锋枪",
             type: "weapon",
             single: false,
-            airdrop: false,
+            airdrop: true,
             wtype: 5,
             ammo: 4,
             index: 23
@@ -289,7 +292,7 @@ Page({
             name: "转换者冲锋枪",
             type: "weapon",
             single: false,
-            airdrop: true,
+            airdrop: false,
             wtype: 5,
             ammo: 0,
             index: 24
@@ -323,7 +326,7 @@ Page({
             single: true,
             airdrop: false,
             wtype: 6,
-            ammo: 0,
+            ammo: 4,
             index: 28
         }, {
             name: "暴走",
@@ -427,7 +430,7 @@ Page({
             single: false,
             airdrop: false,
             wtype: 6,
-            ammo: 4,
+            ammo: 3,
             index: 41
         }],
         result: {
@@ -523,7 +526,7 @@ Page({
             default: false
         }, {
             name: "允许空投武器",
-            comment: "",
+            comment: "选择后将出现空投武器",
             father: [0],
             value: "allowAirDrop",
             index: 8,
