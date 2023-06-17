@@ -22,13 +22,20 @@ Page({
         imageMode: "aspectFill",
         url: "/pages/GamesPage/Apex/pages/apex"
       },
-      /*{
-        name: "Forza Horizon 5",
-        nameCn: "极限竞速：地平线5",
-        image: "images/fz5.jpg",
+      // {
+      //   name: "Forza Horizon 5",
+      //   nameCn: "极限竞速：地平线5",
+      //   image: "images/fz5.jpg",
+      //   imageMode: "aspectFill",
+      //   url: "/pages/GamesPage/Forza5/pages/forza5"
+      // },
+      {
+        name: "Rainbow Six Siege",
+        nameCn: "彩虹六号：围攻",
+        image: "images/R6S.jpg",
         imageMode: "aspectFill",
-        url: "/pages/GamesPage/Forza5/pages/forza5"
-      }*/
+        url: "/pages/GamesPage/R6S/pages/r6s"
+      }
     ],
     buttons: [{
       url: '/pages/Icons/option-white.png',
@@ -42,7 +49,7 @@ Page({
       value: "autoLastPage",
       index: 0,
       disabled: false,
-      checked: true
+      checked: false
     }]
   },
   //游戏点击响应

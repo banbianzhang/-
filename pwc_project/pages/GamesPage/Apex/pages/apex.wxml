@@ -3,11 +3,11 @@
   <image mode="aspectFill" class="loading-icon" src="/pages/Icons/Apex.png"></image>
   <image mode="aspectFill" class="loading-bg" src="/pages/GamesPage/Apex/pages/bg.jpg"></image>
 </view>
-<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/nav_bg.png" bind:navigatorLoadDone="closeLoading"></navigation-bar>
+<navigation-bar title="你群今天玩Apex传奇" bg_color="#D64033" title_color="white" has_bg="true" url="http://81.71.19.164/resources/Apex/nav_bg.png" bind:navigatorLoadDone="closeLoading"></navigation-bar>
 <view class="container" style="height: {{bg_height - 54}}px;">
   <image src="/pages/GamesPage/Apex/pages/bg.jpg" class="bg" mode="aspectFill"></image>
   <view class="mask" style="height: {{legend_image_height}}px;"></view>
-  <image class="legend-image" src="{{initialize?'cloud://my-cloud-0gehkzhm6976db37.6d79-my-cloud-0gehkzhm6976db37-1308010303/legends/' + result.legend.name + '.png':''}}" mode="aspectFill" style="height: {{legend_image_height}}px; display: {{(initialize&&legendsSelectCnt)?'block':'none'}};"></image>
+  <image class="legend-image" src="{{initialize?'http://81.71.19.164/resources/Apex/legends/' + result.legend.name + '.png':''}}" mode="aspectFill" style="height: {{legend_image_height}}px; display: {{(initialize&&legendsSelectCnt)?'block':'none'}};"></image>
   <view class="setting-mask" style="display: {{(legendSettingEnable||settingEnable)?'block':'none'}};" bindtap="disableSettings"></view>
   <view class="setting" style="display: {{(legendSettingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
     <view class="setting-title">可用的传奇</view>
@@ -76,4 +76,4 @@
     </view>
   </view>
 </view>
-<footer bg="-webkit-linear-gradient(top,#2B2B2B,#2D2D2B)" footer_border="4px white solid" buttons="{{buttons}}" main_btn_border="2px white solid" main_btn_bg="-webkit-linear-gradient(top, #343B4D, #7B2D29)" bind:getResult="getResult" bind:callLegendSetting="callLegendSetting" bind:callSetting="callSetting"></footer>
+<footer bg="background:-webkit-linear-gradient(top,#2B2B2B,#2D2D2B);" footer_border="4px white solid" buttons="{{buttons}}" main_btn_border="2px white solid" main_btn_bg="-webkit-linear-gradient(top, #343B4D, #7B2D29)" bind:getResult="getResult" bind:callLegendSetting="callLegendSetting" bind:callSetting="callSetting"></footer>

@@ -25,7 +25,14 @@
             "pages/forza5"
         ],
         "independent":false
-    }],
+    },{
+      "root":"pages/GamesPage/R6S",
+      "name":"r6s",
+      "pages":[
+          "pages/r6s"
+      ],
+      "independent":false
+  }],
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "lazyCodeLoading": "requiredComponents"

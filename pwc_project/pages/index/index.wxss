@@ -46,6 +46,10 @@ page {
   color:#ccc;
 }
 
+.setting-title{
+  margin-top: 10px;
+}
+
 .setting-block-title{
   border-bottom: 2px solid #aaa;
   color: #ccc;

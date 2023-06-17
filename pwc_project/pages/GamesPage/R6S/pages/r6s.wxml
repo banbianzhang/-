@@ -1,0 +1,93 @@
+<!--pages/GamesPage/R6s/r6s.wxml-->
+<view class="loading" wx:if="{{loading}}" bind:navigatorLoadDone="r6sCloseLoading">
+  <image mode="aspectFill" class="loading-icon" src="/pages/Icons/r6s.png"></image>
+  <image mode="aspectFill" class="loading-bg" src="/pages/GamesPage/R6S/pages/imgs/r6s bg.png"></image>
+</view>
+<navigation-bar title="你群今天玩R6S" bg_color="#D64033" title_color="white" has_bg="false"></navigation-bar>
+<view class="container" style="height: {{bg_height - 54}}px;" bind:r6sBgLoadDone="">
+  <image src="http://81.71.19.164/resources/R6S/r6s bg-red.png" class="bg {{activateTeam==1?'bg-on':'bg-off'}}" mode="aspectFill"></image>
+  <image src="http://81.71.19.164/resources/R6S/r6s bg.png" class="bg {{activateTeam==2?'bg-on':'bg-off'}}" mode="aspectFill" bindload="r6sCloseLoading"></image>
+  <view class="mask red {{activateTeam==1?'bg-on':'bg-off'}}" style="height: {{legend_image_height}}px;"></view>
+  <view class="mask {{activateTeam==2?'bg-on':'bg-off'}}" style="height: {{legend_image_height}}px;"></view>
+  <image class="legend-image" src="{{initialize?'http://81.71.19.164/resources/R6S/operator/R6-operator-'+ result.legend.nameLower +'.webp':''}}" mode="aspectFill" style="height: {{legend_image_height}}px; display: {{(initialize&&legendsSelectCnt)?'block':'none'}}; opacity:{{fadeOutImage?'1':'0'}}"></image>
+  <view class="setting-mask" style="display: {{(legendSettingEnable||settingEnable)?'block':'none'}};" bindtap="disableSettings"></view>
+  <view class="setting {{activateTeam==1?'atk':'def'}}" style="display: {{(legendSettingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
+    <view class="setting-title">可用的干员</view>
+    <view class="setting-help">选择一键白给中出现的干员</view>
+    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight - 40}}px;">
+      <view class="legend-list">
+        <view class="legend-block" wx:for="{{activateTeam==1?legendAtk:legendDef}}" wx:key="index" wx:for-item="item" bindtap="selectLegend" data-index="{{index}}" data-name="{{item.name}}">
+          <!-- <view class="image-mask" style="display: {{selectedLegends[index]?'none':'block'}};"></view> -->
+          <image class="legend-profile {{selectedLegends[item.name]?'':'img-grey'}};" src="/pages/GamesPage/R6S/pages/imgs/badge/Badge_{{item.nameLower}}.png"></image>
+          <!-- <view class="legend-block-name" style="background: {{selectedLegends[index]?'':'#777'}};">{{item.name}}</view> -->
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="setting" style="display: {{(settingEnable)?'flex':'none'}}; height: {{settingMaxHeight}}px;">
+    <view class="setting-title">随机设置</view>
+    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight - 40}}px;">
+      <view class="setting-block">
+        <view class="setting-block-title">武器设置</view>
+        <checkbox-group bindchange="weaponSettingChange">
+          <view class="option" wx:for="{{settings}}" wx:key="index" wx:for-item="optionItem">
+            <checkbox class="setting-checkbox" value="{{optionItem.value}}" checked="{{optionItem.checked}}" style="pointer-events: {{optionItem.disabled?'none':'default'}}; opacity: {{optionItem.disabled?'0.3':'1'}};">{{optionItem.name}}</checkbox>
+            <view class="option-comment">{{optionItem.comment}}</view>
+          </view>
+        </checkbox-group>
+      </view>
+      <view class="setting-block">
+        <view class="setting-block-title">缓存设置</view>
+        <view class="option-button">
+          <text class="button option-button-son" bindtap="cleanCache" style="background-color: #ca0000;">清理缓存</text>
+          <text class="option-comment option-button-son">点击后，将清理设置缓存</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='init-page' style="height: {{bg_height - 54- 155}}px; display: {{initialize?'none':'flex'}};">
+    <view style="margin-bottom: -5px;">点击</view>
+    <view style="font-size: 40px; margin-bottom: -5px;">一键白给</view>
+    <view>开始选择你的干员</view>
+  </view>
+  <view class='init-page' style="height: {{bg_height - 54- 155}}px; display: {{(initialize&&!legendsSelectCnt)?'flex':'none'}};">
+    <view>点击我的干员进行配置</view>
+    <view style="bottom: 20px; font-size: 38px;">不然怎么白给</view>
+  </view>
+  <view class="result" style="height: {{bg_height - 54- 155}}px; display: {{(initialize&&legendsSelectCnt)?'flex':'none'}};">
+    <view class="result-block" style="opacity:{{fadeOutImage?'1':'0'}}">
+      <text class="result-info">群友今天玩</text>
+      <view class="legend-name" style="margin-bottom: {{bg_height*0.3*(bg_height/400)}}px;">
+        <text>{{result.legend.nameUpper}}</text>
+        <image class="result-badge" src="{{initialize?'/pages/GamesPage/R6S/pages/imgs/badge/Badge_'+result.legend.nameLower+'.png':''}}"></image>
+      </view>
+      <view class="weapon-panel" style="opacity: {{settings[0].checked&&(settings[1].checked||settings[2].checked||settings[3].checked)?'1':'0'}};">
+        <text class="result-info">玩 {{result.legend.nameUpper}} 当然要配</text>
+        <view class="weapon">
+          <view class="weapon-block main" style="opacity:0; display:{{!settings[0].checked||(!settings[1].checked&&!settings[2].checked&&!settings[3].checked)?'block':'none'}};"></view>
+          <view class="weapon-block main" style="display: {{settings[0].checked&&settings[1].checked?'block':'none'}};">
+            <image class="weapon-img" src="{{initialize?'/pages/GamesPage/R6S/pages/imgs/weapons/'+result.weapon1.filename+'.png':''}}" mode="aspectFit"></image>
+            <view class="weapon-name">{{result.weapon1.name}}</view>
+          </view>
+          <view class="weapon-block sub" style="display: {{settings[0].checked&&settings[2].checked?'block':'none'}};">
+            <image class="weapon-img" src="{{initialize?'/pages/GamesPage/R6S/pages/imgs/weapons/'+result.weapon2.filename+'.png':''}}" mode="aspectFit"></image>
+            <view class="weapon-name" style="{{result.weapon2.name.length>7?'font-size:8px;':''}}">{{result.weapon2.name}}</view>
+          </view>
+          <view class="weapon-block sub" style="display: {{settings[0].checked&&settings[3].checked?'block':'none'}};">
+            <image class="weapon-img" src="{{initialize?'/pages/GamesPage/R6S/pages/imgs/gadget/'+result.weapon3.name+'.png':''}}" mode="aspectFit"></image>
+            <view class="weapon-name" style="{{result.weapon3.name.length>7?'font-size:8px;':''}}">{{result.weapon3.name}}</view>
+          </view>
+        </view>
+        <text class="weapon-comment"></text>
+      </view>
+    </view>
+  </view>
+  <view class="team-select">
+    <view class="team-button {{(activateTeam==2)?'team-def-on':'yee'}}" bindtap="changeTeam" data-team="2">防守方</view>
+    <view class="team-divide">/</view>
+    <view class="team-button {{(activateTeam==1)?'team-atk-on':'yee'}}" bindtap="changeTeam" data-team="1">进攻方</view>
+  </view>
+</view>
+<view class="btn-mask" style="display:{{fadeOutImage?'none':'block'}};"></view>
+<!-- -webkit-linear-gradient(top, {{(activateTeam==1)?'#ff9b4b, #fe973c':'#4BC5FF, #3CD9FE'}}) -->
+<footer bg="background:rgba(0,0,0,0);" footer_border="0px white solid" buttons="{{buttons}}" main_btn_border="4px rgba(226,233,241) solid" main_btn_bg="rgba(226,233,241)" bind:getResult="getResult" bind:callLegendSetting="callLegendSetting" bind:callSetting="callSetting"></footer>

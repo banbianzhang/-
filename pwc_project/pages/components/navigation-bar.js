@@ -30,7 +30,7 @@ Component({
      */
     methods: {
         loadDone:function(e){
-            this.triggerEvent("navigatorLoadDone",{})
+          this.triggerEvent("navigatorLoadDone",{})
         }
     }
 })

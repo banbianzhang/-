@@ -4,7 +4,7 @@
   <view class="setting-mask" style="display: {{settingEnable?'block':'none'}};" bindtap="disableSettings"></view>
   <view class="setting" style="display: {{(settingEnable)?'flex':'none'}}; height: {{settingMaxHeight*0.5}}px;">
     <view class="setting-title">全局设置</view>
-    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight - 40}}px;">
+    <scroll-view scroll-y="true" style="max-height: {{settingMaxHeight*0.5 - 20}}px;">
       <view class="setting-block">
         <view class="setting-block-title">应用设置</view>
         <checkbox-group bindchange="settingChange">

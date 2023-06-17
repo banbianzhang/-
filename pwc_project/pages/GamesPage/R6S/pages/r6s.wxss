@@ -1,0 +1,270 @@
+/* pages/GamesPage/R6s/r6s.wxss */
+.init-page{
+  color: white;
+  font-size: 20px;
+  bottom: 40px;
+}
+
+.init-page view{
+  margin:20px 0;
+}
+
+.legend-name{
+  color: white;
+  font-size: 35px;
+  font-family: 黑体;
+  text-shadow: 0px 0px 12px #000;
+}
+
+.mask{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 60001;
+  background: -webkit-linear-gradient(bottom,rgba(80,111,156,1),rgba(80,111,156,0.6) 25%,rgba(80,111,156,0));
+}
+
+.mask.red{
+  background: -webkit-linear-gradient(bottom,rgb(156, 108, 80),rgba(156,108,80,0.6) 25%,rgba(156,108,80,0));
+}
+
+.result-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  width: 90%;
+  bottom: 20px;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.result-info{
+  color: white;
+  font-size: 15px;
+  margin-bottom: 5px;
+  text-shadow: 0px 0px 12px #000;
+}
+
+.legend-image{
+  position: absolute;
+  z-index: 60000;
+  bottom: 0;
+  width:100%;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.comment{
+  padding: 1px 20px;
+  color:#aaa;
+  font-size: 15px;
+  background: rgba(30,30,30,0.7);
+}
+
+.weapon-panel{
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-shadow: 0px 0px 12px #000;
+}
+
+.weapon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  width: 100%;
+}
+
+.weapon-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  color:#fff;
+  background: rgba(229,238,237,0.7);
+  height: 50px;
+}
+
+.weapon-name {
+  position: absolute;
+  font-size: 10px;
+  bottom: 5px;
+  padding:0px 5px;
+}
+
+.weapon-block.main{
+  min-width: 36%;
+  margin: 0px 2px;
+  max-width: 38%;
+}
+
+.weapon-block.sub{
+  min-width: 20%;
+  margin: 0px 2px;
+  max-width: 38%;
+}
+
+.weapon-img{
+  position: relative;
+  height:50px;
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.legend-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.legend-block{
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border:transparent 2px solid;
+  margin: 0px 10px 15px 10px;
+}
+
+.legend-block-name{
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  width: 64px;
+  height: 22px;
+  font-size: 12px;
+  background-color: #D64033;
+  text-align: center;
+  padding:1px 0px 5px 0;
+  margin:auto;
+}
+
+.legend-profile{
+  position: relative;
+  left: -10px;
+  top: -10px;
+  height: 60px;
+  width: 60px;
+  z-index: 100002;
+}
+
+.img-grey{
+  filter: grayscale(100%) brightness(38%);
+}
+
+.image-mask{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(30,30,30,0.5);
+  z-index: 100003;
+}
+
+.setting-help{
+  color: #aaa;
+}
+
+.setting{
+  background: -webkit-linear-gradient(top,#2B2B2B,#2D2D2B);
+  color:#ccc;
+}
+
+.setting.atk{
+  border-top: 6px solid #ff781e;
+}
+
+.setting.def{
+  border-top: 6px solid #1ed2ff;
+}
+
+.setting-block-title{
+  border-bottom: 2px solid #aaa;
+  color: #ccc;
+}
+
+.option-comment{
+  color: #aaa;
+}
+
+.button{
+  background-color: #D64033;
+  color: #fff;
+}
+
+.team-select{
+  position: relative;
+  display: flex;
+  height: 40px;
+  width: 100%;
+  bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+.team-button{
+  width: 150px;
+  font-size: 13px;
+  text-align: center;
+  color: #bbb;
+  transition:color 0.5s;
+  text-shadow: 0px 0px 16px #000;
+}
+
+.team-def-on{
+  font-size: 18px;
+  color: #1ed2ff;
+}
+
+.team-atk-on{
+  font-size: 18px;
+  color: #ff781e;
+}
+
+.team-divide{
+  font-size: 25px;
+  width: 10px;
+  color: white;
+  text-align: center;
+  padding-right: 12px;
+  text-shadow: 0px 0px 16px #000;
+}
+
+.bg-off{
+  transition: opacity .5s;
+  opacity: 0;
+}
+
+.bg-on{
+  transition: opacity 0.2s;
+  opacity: 1;
+}
+
+.btn-mask{
+  position: fixed;
+  width: 100%;
+  height: 200px;
+  bottom: 10px;
+  background-color: transparent;
+  z-index: 101000;
+}
+
+.result-badge{
+  width: 50px;
+  height: 50px;
+  z-index: 100000;
+  display: inline-block;
+  position: relative;
+  top: 12px;
+  left: 5px;
+}
